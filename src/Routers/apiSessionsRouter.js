@@ -10,9 +10,6 @@ export default apiSessionsRouter;
 
 apiSessionsRouter.post('/login', passport.authenticate('login'), loginController);
 
-apiSessionsRouter.post('/registro', (req, res, next)=> {
-    console.log('en la ruta');
-    next();
-}, passport.authenticate('register'), registerController);
+apiSessionsRouter.post('/registro', passport.authenticate('register'), registerController);
 
 

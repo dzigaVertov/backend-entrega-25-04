@@ -35,8 +35,8 @@ async function nuevoUsuario(event) {
         }
     });
 
-     if (status === 201) {
-        window.location.href = '/profile'
+     if (status === 201 || status === 200) {
+        window.location.href = '/perfil'
       } else {
         console.log('[login] estado inesperado: ' + status)
       }
