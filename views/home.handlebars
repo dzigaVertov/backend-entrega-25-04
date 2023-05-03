@@ -1,0 +1,26 @@
+<h1>Productos agregados</h1>
+
+{{#if hayDocs}}
+<ul class='lista'>  
+  {{#each productos}}    
+      <li class='card'>
+    <a href="/{{_id}}">Ver Detalle</a>
+        {{#each this}}
+      <p>{{@key}}: {{this}}</p>
+    {{/each}}
+    </li>
+  {{/each}}
+</ul>
+{{/if}}
+
+<a {{#if hasPrevPage}} href="/?limit={{limit}}&page={{prevPage}}" {{/if}}>Prev</a>
+[{{ page }} de {{totalPages}}]
+<a {{#if hasNextPage}} href="/?limit={{limit}}&page={{nextPage}}" {{/if}}>Next</a><br>
+Página: <input type="text"> <button onclick="irAPag({{limit}})">ir</button>
+<script>
+  function irAPag(limit) {
+    const pagDeseada = document.querySelector('input').value || 1
+    window.location = `/?limit=${limit}&page=${pagDeseada}`
+  }
+</script>
+

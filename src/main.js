@@ -7,4 +7,4 @@ import {MONGODB_CNX_STR} from './config/mongoose.config.js';
 const dbConnection = await mongoose.connect(MONGODB_CNX_STR)
 console.log(`CONECTADO A BASE DE DATOS en ${MONGODB_CNX_STR}`);
 
-app.listen(PORT, () => console.log(`Escuchando en puerto: ${PORT}`));
+app.listen(8080, () => console.log(`Escuchando en puerto: ${PORT}`));
