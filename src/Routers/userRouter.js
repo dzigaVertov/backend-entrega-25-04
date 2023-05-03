@@ -8,7 +8,6 @@ userRouter.get('/', (req, res) => {
 });
 
 userRouter.get('/login', (req, res) => {
-    console.log('llegamos acña');
     res.render('login');
 })
 
