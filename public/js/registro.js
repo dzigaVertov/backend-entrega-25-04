@@ -13,7 +13,7 @@ async function nuevoUsuario(event) {
     const age = document.querySelector('#age');
     const password = document.querySelector('#password');
 
-    const datosUsuario = {
+    const datosPersonales = {
         first_name: first_name.value,
         last_name: last_name.value,
         email: email.value,
@@ -21,9 +21,15 @@ async function nuevoUsuario(event) {
         password: password.value
     }
 
+    const payload = {
+        username: first_name.value,
+        password: password.value,
+        datosPersonales
+    }
+
     const {status} = await fetch('/api/sessions/registro', {
         method: 'POST',
-        body: JSON.stringify(datosUsuario),
+        body: JSON.stringify(payload),
         headers: {
             "Content-type": "application/json"
         }
