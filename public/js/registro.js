@@ -18,11 +18,10 @@ async function nuevoUsuario(event) {
         last_name: last_name.value,
         email: email.value,
         age: age.value,
-        password: password.value
     }
 
     const payload = {
-        username: first_name.value,
+        username: email.value,
         password: password.value,
         datosPersonales
     }
@@ -38,8 +37,6 @@ async function nuevoUsuario(event) {
      if (status === 201 || status === 200) {
         window.location.href = '/perfil'
       } else {
-        console.log('[login] estado inesperado: ' + status)
+        console.log('[register] estado inesperado: ' + status)
       }
-
-    console.log(resultadoPeticion);
 }

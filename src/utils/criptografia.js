@@ -1,7 +1,8 @@
 import bcrypt from 'bcrypt';
 
 export function hashear(password) {
-    return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+    let passwordHasheado = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+    return passwordHasheado;
 }
 
 export function validarPassword(recibido, almacenado){

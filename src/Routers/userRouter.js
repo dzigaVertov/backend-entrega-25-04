@@ -17,6 +17,7 @@ userRouter.get('/register', (req, res) => {
 
 userRouter.get('/perfil', (req, res) => {
     if (req.isAuthenticated()) {
+        console.log(req['user']);
         res.render('perfil', {usuario: req['user']});
     } else {
         res.redirect('/login');

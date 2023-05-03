@@ -5,14 +5,14 @@ import { usuarioModel } from '../models/schemaUsuario.js';
 import { manager as userManager } from '../managers/userManager.js';
 
 passport.use('register', new LocalStrategy({ passReqToCallback: true }, async (req, _u, _p, done) => {
-    const { username, password, datosPersonales } = req.body;
+    let { username, password, datosPersonales } = req.body;
+
     const user = {
         username,
-        password,
+        password: hashear(password),
         ...datosPersonales
     };
-    
-    // const user = new usuarioModel({ username, password: hashear(password), ...datosPersonales });
+
     await userManager.guardar(user);
     done(null, {
         username: user.username,
@@ -29,16 +29,17 @@ passport.use('login', new LocalStrategy({ passReqToCallback: true }, async (req,
     try {
         buscado = await userManager.buscarPorUsername(username);
     } catch (error) {
-        return done(new ErrorDeAutenticacion());
+        return done(error);
     }
+    console.log('passwords coinciden: ', validarPassword(password, buscado.password));
     if (!validarPassword(password, buscado.password))
-        return done(new ErrorDeAutenticacion());
+        return done(new Error());
     done(null, {
         username: buscado.username,
-        nombre: buscado.nombre,
-        apellido: buscado.apellido,
-        edad: buscado.edad,
-        direccion: buscado.direccion,
+        nombre:   buscado.first_name,
+        apellido: buscado.last_name,
+        edad:     buscado.age,
+        email:    buscado.email,
     });
 }));
 

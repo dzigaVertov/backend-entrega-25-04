@@ -1,4 +1,4 @@
 export function loginController(req, res){
     console.log('logincontroller');
-    res.redirect('/perfil');
+    res.status(200).redirect('/perfil');
 }
