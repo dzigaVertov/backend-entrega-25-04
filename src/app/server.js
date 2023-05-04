@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.engine('handlebars', engine());
 app.set('views', './views');
-app.set('view engine', 'handlebars')
+app.set('view engine', 'handlebars');
 
 app.use(session);
 
