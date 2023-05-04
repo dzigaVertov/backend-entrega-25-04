@@ -1,7 +1,12 @@
 const formularioLogin = document.querySelector('#formularioLogin');
+const githubButton = document.querySelector('#github');
 
 if (formularioLogin instanceof HTMLFormElement) {
     formularioLogin.addEventListener('submit', loginSubmit)
+}
+
+if (github instanceof HTMLButtonElement) {
+    githubButton.addEventListener('click', irAGithub);
 }
 
 async function loginSubmit(event) {
@@ -16,7 +21,7 @@ async function loginSubmit(event) {
             password: pass.value
         };
 
-        const {status} = await fetch('/api/sessions/login', {
+        const { status } = await fetch('/api/sessions/login', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -25,11 +30,16 @@ async function loginSubmit(event) {
             body: JSON.stringify(datosUsuario)
         });
 
-        
-     if (status === 201 || status === 200) {
-        window.location.href = '/perfil'
-      } else {
-        console.log('[login] estado inesperado: ' + status)
-      }
+
+        if (status === 201 || status === 200) {
+            window.location.href = '/perfil'
+        } else {
+            console.log('[login] estado inesperado: ' + status)
+        }
     }
+}
+
+
+async function irAGithub(event) {
+    window.location.href = '/api/sessions/github_auth';
 }
